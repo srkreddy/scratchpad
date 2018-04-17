@@ -17,3 +17,6 @@
 
   `cat /proc/<pid>/environ`
 
+- readelf of a binary (which memory allocator in use
+  ` readelf -d `which ceph-osd` | grep malloc ` 
+- 
