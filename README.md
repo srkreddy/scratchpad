@@ -1,0 +1,2 @@
+# scratchpad
+useful notes 
