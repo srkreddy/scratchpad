@@ -29,3 +29,7 @@
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html-single/performance_tuning_guide/index
 - Hyper converged ceph: 
 https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/11/html/hyper-converged_infrastructure_guide/resource-isolation
+
+- ceph osd config show: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok config show` 
+- ceph osd perf dump: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok perf dump`
+- 
