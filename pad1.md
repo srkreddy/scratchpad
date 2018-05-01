@@ -33,3 +33,6 @@ https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/11/html
 - ceph osd config show: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok config show` 
 - ceph osd perf dump: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok perf dump`
 - 
+Setting up prometheus/node_exporter
+https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-on-ubuntu-16-04
+- Need to do grafana as well.
