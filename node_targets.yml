@@ -1,0 +1,26 @@
+[
+    {
+        "targets": [
+                     "ceph-sn-nvme-perf-v01-stor-1:9100"
+                   ],
+        "labels": {
+            "instance": "ceph-sn-nvme-perf-v01-stor-1"
+        }
+    },
+    {
+        "targets": [
+                     "ceph-sn-nvme-perf-v01-stor-2:9100"
+                   ],
+        "labels": {
+            "instance": "ceph-sn-nvme-perf-v01-stor-2"
+        }
+    },
+    {
+        "targets": [
+                     "ceph-sn-nvme-perf-v01-stor-3:9100"
+                   ],
+        "labels": {
+            "instance": "ceph-sn-nvme-perf-v01-stor-3"
+        }
+    }
+]
