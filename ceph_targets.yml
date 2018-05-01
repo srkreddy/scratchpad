@@ -1,0 +1,12 @@
+[
+    {
+        "targets": [
+                     "ceph-sn-nvme-perf-v01-stor-1:9283",
+                     "ceph-sn-nvme-perf-v01-stor-2:9283",
+                     "ceph-sn-nvme-perf-v01-stor-3:9283"
+                   ],
+        "labels": {
+            "instance": "ceph_nvme_performance"
+        }
+    }
+]
