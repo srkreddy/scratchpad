@@ -36,3 +36,20 @@ https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/11/html
 Setting up prometheus/node_exporter
 https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-on-ubuntu-16-04
 - Need to do grafana as well.
+
+- osd removal:
+
+  ```
+  for i in {0..11}; do ceph osd crush remove osd.$i; ceph auth del osd.$i; ceph osd rm $i; done
+  ceph-ansible osds -i inventory -m shell -a 'systemctl stop ceph-osd@*'
+  ceph-ansible osds -i inventory -m shell -a 'umount /dev/nvme*'
+  ceph-ansible osds -i inventory -m shell -a 'rm -rf /var/lib/ceph/osd'
+  ceph-ansible osds -i inventory -m shell -a 'sgdisk -Z /dev/nvme0n1'
+  ceph-ansible osds -i inventory -m shell -a 'sgdisk -Z /dev/nvme1n1'
+  dd if=/dev/zero of=/dev/nvme0n1 bs=1M oflag=direct
+  dd if=/dev/zero of=/dev/nvme1n1 bs=1M oflag=direct
+  ceph-ansible osds -i inventory -m shell -a 'hdparm -tT --direct /dev/nvme0n1'
+  ceph-ansible osds -i inventory -m shell -a 'hdparm -tT --direct /dev/nvme1n1'
+  ceph-ansible osds -i inventory -m shell -a 'dd if=/dev/zero of=/dev/nvme1n1 bs=1M oflag=direct' // To dd'ing whole disk
+  
+  ```
