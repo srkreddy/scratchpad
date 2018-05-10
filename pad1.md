@@ -4,15 +4,35 @@
     systemctl restart ceph-osd@*
     systemctl restart ceph-mon@*
     systemctl restart ceph-mgr@*
+    systemctl restsrt ceph-radosgw@*
    ```      
 - Running a commnad on group of hosts in inventory file using ceph-ansible:
 
-   `ceph-ansible <groupname> -i inventory -m shell -a 'uptime' `
+   `ceph-ansible <groupname> -i inventory -m shell -a 'uptime'
+   `
+   
+   ```  
+     ceph-ansible osds -i inventory -m shell -a 'systemctl restart ceph-osd@*'
+     ceph-ansible osds -i inventory -m shell -a 'systemctl restart ceph-mon@*'
+     ceph-ansible osds -i inventory -m shell -a 'systemctl restart ceph-mgr@*'
+     ceph-ansible osds -i inventory -m shell -a 'systemctl restart ceph-radosgw@*'
+     ```
  
-- Running a benchmark playbook on inventory and fork parallael instances (more than default) using ceph-ansible-playbook:
+- Running a 
+playbook on inventory and fork parallael instances (more than default) using ceph-ansible-playbook:
 
-  `ceph-ansible-playbook -i inventory -f 24 -e @dirname/vars.yml benchmark/fio_benchmark.yml `
+  `ceph-ansible-playbook -i inventory -f 24 -e @envname/vars.yml benchmark/fio_benchmark.yml `
 
+- how to rgw benchmark:
+`ceph-ansible-playbook -i inventory  -e @envname/vars.yml benchmark/rgw_benchmark.yml`
+ Add following lines to the vars.yml:
+ 
+ ```
+ external_lb_vip_address: "{{ bootstrap_host_public_address | default(ansible_default_ipv4.address) }}"
+ internal_lb_vip_address: <ip address of haproxy node>
+ 
+ ``` 
+ 
 - how to print env variables used by a process in linux:
 
   `cat /proc/<pid>/environ`
@@ -31,8 +51,7 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html-si
 https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/11/html/hyper-converged_infrastructure_guide/resource-isolation
 
 - ceph osd config show: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok config show` 
-- ceph osd perf dump: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok perf dump`
-- 
+- ceph osd perf dump: `ceph --admin-daemon /var/run/ceph/ceph-osd.0.asok perf dump` or `ceph daemon osd.0 perf dump`
 Setting up prometheus/node_exporter
 https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-on-ubuntu-16-04
 - Need to do grafana as well.
@@ -53,3 +72,11 @@ https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-on-ub
   ceph-ansible osds -i inventory -m shell -a 'dd if=/dev/zero of=/dev/nvme1n1 bs=1M oflag=direct' // To dd'ing whole disk
   
   ```
+  
+ - rados bench runs: 
+    ```
+    rados bench -p <poolname> 300 write -t 8 -b 4K
+    rados bench -p <poolname> 300 write --concurrent-ios=32 -b 4K
+    ```
+    
+ 
