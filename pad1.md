@@ -79,4 +79,32 @@ https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-on-ub
     rados bench -p <poolname> 300 write --concurrent-ios=32 -b 4K
     ```
     
- 
+ - list current tunables:
+    
+     ```
+     root@ceph:/etc/ceph# ceph osd crush show-tunables
+{
+    "choose_local_tries": 0,
+    "choose_local_fallback_tries": 0,
+    "choose_total_tries": 50,
+    "chooseleaf_descend_once": 1,
+    "chooseleaf_vary_r": 1,
+    "chooseleaf_stable": 1,
+    "straw_calc_version": 1,
+    "allowed_bucket_algs": 54,
+    "profile": "jewel",
+    "optimal_tunables": 1,
+    "legacy_tunables": 0,
+    "minimum_required_version": "jewel",
+    "require_feature_tunables": 1,
+    "require_feature_tunables2": 1,
+    "has_v2_rules": 0,
+    "require_feature_tunables3": 1,
+    "has_v3_rules": 0,
+    "has_v4_buckets": 1,
+    "require_feature_tunables5": 1,
+    "has_v5_rules": 0
+}
+
+root@ceph:/etc/ceph# 
+```
