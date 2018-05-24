@@ -109,3 +109,6 @@ https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-on-ub
 root@ceph:/etc/ceph# 
 
 ```
+
+- lsblk |grep ceph |awk '{print $7}' | grep -o '[0-9]\+' // print the id of the osds on a host
+- 
