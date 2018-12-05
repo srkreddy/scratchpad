@@ -133,3 +133,16 @@ for (i in poollist) printf("--------"); printf("----------------\n");
 printf("SUM :\t"); for (i in poollist) printf("%s\t",sumpool[i]); printf("|\n");
 }'
 ```
+- Create User for s3 access
+sudo radosgw-admin user create --uid="testuser" --display-name="First User"
+- Create User for swift access
+sudo radosgw-admin subuser create --uid=testuser --subuser=testuser:swift --access=full
+If above command doesn't generate a secret key, generate it using,
+sudo radosgw-admin key create --subuser=testuser:swift --key-type=swift --gen-secret
+
+Now run swift stat/list/post commands
+
+- swift -A http://10.20.30.22:8080/auth/1.0 -U testuser:swift -K <secret key value in swift_keys:secret_key of user testuser> stat
+- User post command to create a container /swift post <container name>
+- list to list the container / swift list
+
