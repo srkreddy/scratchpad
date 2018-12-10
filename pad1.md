@@ -146,3 +146,13 @@ Now run swift stat/list/post commands
 - User post command to create a container /swift post <container name>
 - list to list the container / swift list
 
+``` 
+ceph tell mon.\* injectargs '--mon-allow-pool-delete=true'
+for i in `rados lspools`; do ceph osd pool delete $i $i  --yes-i-really-really-mean-it; sleep 1; rados ldone
+```
+
+EC enabling:
+- create profile: ceph osd erasure-code-profile set ec-42-profile k=4 m=2 crush-failure-domain=host crush-device-class=ssd
+- create pool: ceph osd pool create poolname pgnum erasure ec-42-profile
+- enable overwrites: ceph osd pool set ec42 allow_ec_overwrites true
+- ceph osd pool application enable poolname rbd
