@@ -1,0 +1,14 @@
+-- linux perf in 60 seconds
+uptime - load averages
+dmesg -T |tail - kernel messages
+vmstat 1 - overall stats by time
+mpstat -P ALL 1  - cpu balance 
+pidstat 1 - processor usages
+iostat -xz 1 - disk stat
+free -m - free memory
+sar -n DEV 1 - network io
+sar -n TCP,ETCP 1 - tcp stats
+top - overall view
+
+cpu flame graph on github: brendangregg/falmegraph
+netflix vector: netflix/vector- realtime instance analysis tool
