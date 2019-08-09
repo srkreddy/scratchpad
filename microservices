@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=gauOI0O9fRM - Microservices in the Cloud with Kubernetes and Istio (Google I/O '18)
+https://www.youtube.com/watch?v=1iyFq2VaL5Y - What is Istio , Provides traffic mgmt, Policy enforcement, Telemetry
+Service Mesh: Network of Micorservices. How microservices talk to one another. 
+Istio:  load balancing, finegrain control, access control, visibility
+https://www.youtube.com/watch?v=kKC-VgAptII -> Using Kubernetes, Spinnaker and Istio to Manage a Multi-cloud Environment (Cloud Next '18)
